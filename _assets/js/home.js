@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     container.appendChild(p);
     
     msg =`
-<aika sweet-shadow;${aj}>！いつもありがとう！<heart;❤>
+<aika sweet-shadow;${aj}>！いつもありがとう！<notoemoji emoji-glow;❤>
 
 あれから
 `;
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     p = document.createElement('p');
     p.className = 'center de-la';
     container.appendChild(p);
-    msg ="\nJe <heart;t'aime> ma chouchoute <heart;❤>";
+    msg ="\nJe <heart;t'aime> ma chouchoute <notoemoji emoji-glow;❤>";
     await typeText(p, msg, 50);
     
     p = document.createElement('p');
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     p = document.createElement('p');
     p.className = 'center de-la';
     container.appendChild(p);
-    msg =`\n<aika sweet-shadow;${ai}><heart;❤><ilya cool-shadow;${ii}>\n`
+    msg =`\n<aika sweet-shadow;${ai}><notoemoji emoji-glow;❤><ilya cool-shadow;${ii}>\n`
     await typeText(p, msg, sleepMs);
     
     const foot = document.getElementById("home-footer");
@@ -139,7 +139,7 @@ async function typeText(el, txt, sleepMs) {
       target = el;
     }
     
-    /*
+    /* CURRENTLY UNUSED
     else if (c === '[') {
       inKanji = 1;
     } else if (c === ':' && inKanji) {

@@ -20,6 +20,19 @@
   font-style: normal;
 }
 
+.notoemoji {
+  font-family: "Noto Color Emoji", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.emoji-glow {
+  display: inline-block;
+  filter: drop-shadow(0 0 16px #f55)
+          drop-shadow(0 0 20px #f5b)
+          drop-shadow(0 0 30px #f0b);
+}
+
+
 
 
 *,
@@ -253,6 +266,10 @@ hr.short {
 }
 
 #home-typed-message {
+  // to deal with flickering on firefox?
+  //display: inline-block;
+  //width: 100%;
+  
   font-size: 1.2rem;
   
   padding-left: .5rem;
