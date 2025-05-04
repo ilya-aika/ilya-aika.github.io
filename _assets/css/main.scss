@@ -1,9 +1,25 @@
 ---
 ---
 
-@use "font-family";
-@use "home";
-@use "pages";
+// === FONT FAMILY ===
+
+.serif {
+  font-family: serif;
+}
+
+.de-la {
+  font-family: "Playwrite DE LA", cursive;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.hinamin {
+  font-family: "Hina Mincho", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 
 *,
@@ -221,5 +237,76 @@ hr.short {
     0 0 20px #eee,
     0 0 30px #eee,
     0 0 40px #eee;
+}
+
+
+
+// === HOME ===
+
+#home-content {
+  font-size: 1.4rem;
+  
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+#home-typed-message {
+  font-size: 1.2rem;
+  
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+
+#home-enter-btn {
+  padding: 12px 24px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #e9001b;
+  color: black;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #930016;
+  transition: all 0.1s ease-in-out;
+}
+
+#home-enter-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #b30016;
+}
+
+#home-footer {
+  font-size: .9rem;
+  
+  margin-top: 10rem;
+  padding-bottom: 2rem;
+  
+  a {
+    color: #d00;
+    font-weight: bold;
+  }
+  a:hover {
+    background-color: #e00;
+    color: #a00;
+  }
+  a:visited {
+    color: #900;
+  }
+  a:visited:hover {
+    background-color: #a00;
+    color: #900;
+  }
+}
+
+
+
+// === PAGES ===
+
+.page-content {
+  padding-left: .5rem;
+  padding-right: .5rem;
 }
 
