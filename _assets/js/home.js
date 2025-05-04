@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     }, 1000);
     
     msg =`
-もの月日が流れた中で
+の月日が流れた中で
 僕らは一緒に色んなことをしてきた
 ふたりで
 ゲームしたり
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 笑ったり
 たまに喧嘩するときもあるけど
 すぐ仲直りして
-それでまた笑ったりしたね
+それでまた笑ったりしたね！
 ずっと一緒にいてくれてありがとう！
 
 <aika sweet-shadow;${aj}>は<ilya cool-shadow;${ij}>だけの女の子だ！`;
