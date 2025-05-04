@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", async function() {
   const params = new URLSearchParams(window.location.search);
   const pair = params.get('pair') || 'Aika';
   const sleepMs = parseInt(params.get('ms'), 10) || 90;
+  const noFullscreen = (params.get('nf') != null) || false;
   
   const baseTime = "2022-10-16T11:14:00";
   
@@ -33,7 +34,9 @@ document.addEventListener("DOMContentLoaded", async function() {
   
   document.getElementById('home-enter-btn').onclick = async function() {
     document.getElementById('home-enter-container').className = 'hidden';
-    goFullscreenAndLockOrientation(document.documentElement);
+    
+    if (!noFullscreen)
+      goFullscreenAndLockOrientation(document.documentElement);
     
     const container = document.getElementById('home-typed-message');
     let p;
