@@ -95,7 +95,12 @@ document.addEventListener("DOMContentLoaded", async function() {
     container.appendChild(p);
     
     msg =`\n―― <ilya cool-shadow de-la;${ii}>`;
+    await typeText(p, msg, sleepMs);
     
+    p = document.createElement('p');
+    p.className = 'center de-la';
+    container.appendChild(p);
+    msg =`\n<aika sweet-shadow;${ai}><heart;❤><ilya cool-shadow;${ii}>\n`
     await typeText(p, msg, sleepMs);
     
     const foot = document.getElementById("home-footer");
