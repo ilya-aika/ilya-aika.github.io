@@ -34,7 +34,6 @@
 
 
 
-
 *,
 *::before,
 *::after {
@@ -258,6 +257,8 @@ hr.short {
 
 #home-content {
   font-size: 1.4rem;
+  padding-top: .5rem;
+  padding-bottom: 5rem;
   
   p {
     margin: 0;
@@ -265,34 +266,11 @@ hr.short {
   }
 }
 
-#home-typed-message {
-  // to deal with flickering on firefox?
-  //display: inline-block;
-  //width: 100%;
-  
+#home-message {
   font-size: 1.2rem;
   
   padding-left: .5rem;
   padding-right: .5rem;
-}
-
-
-#home-enter-btn {
-  padding: 12px 24px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  background-color: #e9001b;
-  color: black;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 0 #930016;
-  transition: all 0.1s ease-in-out;
-}
-
-#home-enter-btn:active {
-  transform: translateY(2px);
-  box-shadow: 0 2px 0 #b30016;
 }
 
 #home-footer {
