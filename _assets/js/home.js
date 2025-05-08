@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     const container = document.getElementById('home-content');
     container.classList.add('show');
     
-    const baseTime = "2022-10-16T11:14:00";
+    const baseTime = "2022-10-16T11:14:00+09:00";
     const keika = document.getElementById('keika');
     keika.innerText = getTimePassedString(baseTime);
     const keikaItv = setInterval(function() {
