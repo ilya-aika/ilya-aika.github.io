@@ -1,24 +1,33 @@
 
 document.addEventListener("DOMContentLoaded", async function() {
-  parseParams();
-  const app = playFirework();
+  const params = parseParams();
+  let app = null;
+  let showContentSleep = 50;
+  
+  if (!params.skipa) {
+    app = playFirework();
+    showContentSleep = 2400;
+  }
   
   setTimeout(function(){
-    app.view.remove();
-    app.ticker.stop();
-    app.ticker.destroy();
-    
-    const container = document.getElementById('home-content');
-    container.classList.add('show');
+    if (app) {
+      app.view.remove();
+      app.ticker.stop();
+      app.ticker.destroy();
+    }
     
     const baseTime = "2022-10-16T11:14:00+09:00";
     const keika = document.getElementById('keika');
     keika.innerText = getTimePassedString(baseTime);
-    const keikaItv = setInterval(function() {
+    
+    const container = document.getElementById('home-content');
+    container.classList.add('show');
+    
+    setInterval(function() {
       // could be simplified by incrementing the time once the time diff is calculated
       keika.innerText = getTimePassedString(baseTime);
     }, 1000);
-  }, 2400);
+  }, showContentSleep);
   
   // when should we show the footer?
 });
@@ -101,26 +110,37 @@ function spawnHeartFirework(app, particleTexture, x, y, count = 1500, scale = 3)
 
 function parseParams() {
   const params = new URLSearchParams(window.location.search);
+  const ret = {};
+  
   const pair = params.get('pair') || '';
   const splits = pair.split(',');
   
   if (splits.length == 6) {
+    [aika_r, aika_k, aika_h,
+     ilya_r, ilya_k, ilya_h] = splits;
+    Object.assign(ret, {aika_r, aika_k, aika_h, ilya_r, ilya_k, ilya_h});
     document.querySelectorAll('.aika').forEach(el => {
       if (el.classList.contains('kanji')) {
-        el.innerText = splits[1];
+        el.innerText = aika_k;
       } else {
-        el.innerText = splits[0];
+        el.innerText = aika_r;
       }
     });
     
     document.querySelectorAll('.ilya').forEach(el => {
       if (el.classList.contains('kanji')) {
-        el.innerText = splits[4];
+        el.innerText = ilya_k;
       } else {
-        el.innerText = splits[3];
+        el.innerText = ilya_r;
       }
     });
   }
+  
+  
+  // skip hanabi animation
+  ret.skipa = params.get('skipa') != null;
+  
+  return ret;
 }
 
 
