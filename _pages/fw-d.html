@@ -1,0 +1,170 @@
+---
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Heart-Shaped Firework with Glow</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script src="https://pixijs.download/v7.3.2/pixi.min.js"></script>
+    <script>
+        // Initialize PixiJS
+        const app = new PIXI.Application({
+            width: window.innerWidth,
+            height: window.innerHeight,
+            backgroundColor: 0x000000,
+            antialias: true
+        });
+        document.body.appendChild(app.view);
+
+        // Create a container for particles
+        const particleContainer = new PIXI.ParticleContainer(10000, {
+            scale: true,
+            position: true,
+            rotation: true,
+            uvs: true,
+            alpha: true
+        });
+        app.stage.addChild(particleContainer);
+
+        // Create particle texture (a small white circle)
+        const particleGraphic = new PIXI.Graphics();
+        particleGraphic.beginFill(0xFFFFFF);
+        particleGraphic.drawCircle(0, 0, 2);
+        particleGraphic.endFill();
+        const particleTexture = app.renderer.generateTexture(particleGraphic);
+
+        // Heart-shaped particle emitter configuration
+        const emitter = new PIXI.ParticleEmitter(particleContainer, particleTexture, {
+            lifetime: { min: 1.5, max: 2.5 },
+            frequency: 0.001,
+            spawnChance: 1,
+            particlesPerWave: 1,
+            emitterLifetime: 0,
+            maxParticles: 1000,
+            addAtBack: false,
+            pos: {
+                x: app.screen.width / 2,
+                y: app.screen.height / 2
+            },
+            behaviors: [
+                {
+                    type: 'spawnShape',
+                    config: {
+                        type: 'callback',
+                        data: {
+                            callback: (position) => {
+                                // Heart-shaped equation
+                                const t = Math.random() * Math.PI * 2;
+                                const scale = 5 + Math.random() * 3;
+                                position.x = 16 * Math.pow(Math.sin(t), 3) * scale;
+                                position.y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t)) * scale;
+                            }
+                        }
+                    }
+                },
+                {
+                    type: 'color',
+                    config: {
+                        color: {
+                            list: [
+                                { value: '#FF69B4', time: 0 },  // Hot pink
+                                { value: '#FF1493', time: 1 }   // Deep pink
+                            ],
+                        },
+                    }
+                },
+                {
+                    type: 'alpha',
+                    config: {
+                        alpha: {
+                            list: [
+                                { value: 1, time: 0 },
+                                { value: 0, time: 1 }
+                            ],
+                        },
+                    }
+                },
+                {
+                    type: 'scale',
+                    config: {
+                        scale: {
+                            list: [
+                                { value: 0.5, time: 0 },
+                                { value: 1.5, time: 1 }
+                            ],
+                        },
+                        minMult: 1
+                    }
+                },
+                {
+                    type: 'moveSpeed',
+                    config: {
+                        speed: {
+                            list: [
+                                { value: 20, time: 0 },
+                                { value: 0, time: 1 }
+                            ],
+                        },
+                        minMult: 1
+                    }
+                },
+                {
+                    type: 'rotationStatic',
+                    config: {
+                        min: 0,
+                        max: 360
+                    }
+                },
+                {
+                    type: 'blendMode',
+                    config: {
+                        blendMode: 'add'
+                    }
+                }
+            ]
+        });
+
+        // Add bloom filter for glow effect
+        const bloomFilter = new PIXI.filters.AdvancedBloomFilter({
+            threshold: 0.1,
+            bloomScale: 1.5,
+            brightness: 1.5,
+            blur: 8,
+            quality: 4
+        });
+        particleContainer.filters = [bloomFilter];
+
+        // Animation loop
+        let elapsed = 0;
+        app.ticker.add((delta) => {
+            elapsed += delta / 60;
+            emitter.update(delta / 60);
+            
+            // Occasionally burst more particles
+            if (Math.random() < 0.02) {
+                emitter.emit({
+                    x: app.screen.width * 0.25 + Math.random() * app.screen.width * 0.5,
+                    y: app.screen.height * 0.25 + Math.random() * app.screen.height * 0.5
+                });
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            app.renderer.resize(window.innerWidth, window.innerHeight);
+        });
+
+        // Initial burst
+        emitter.emit({
+            x: app.screen.width / 2,
+            y: app.screen.height / 2
+        });
+    </script>
+</body>
+</html>

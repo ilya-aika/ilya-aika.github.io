@@ -1,0 +1,82 @@
+---
+layout: none
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Heart Firework</title>
+  <style>body { margin:0; background:#000; overflow:hidden; }</style>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
+<script>
+  const app = new PIXI.Application({ background: 0x000000, resizeTo: window });
+  document.body.appendChild(app.view);
+
+  // Create a glowing particle texture
+  function createParticleTexture() {
+    const g = new PIXI.Graphics();
+    const radius = 4;
+    const blur = 15;
+    g.beginFill(0xff66cc);
+    g.drawCircle(radius + blur, radius + blur, radius);
+    g.endFill();
+    return app.renderer.generateTexture(g, PIXI.SCALE_MODES.LINEAR, 1, new PIXI.Rectangle(0, 0, radius * 2 + blur * 2, radius * 2 + blur * 2));
+  }
+
+  const particleTexture = createParticleTexture();
+
+  function spawnHeartFirework(x, y, count = 800, speed = 3, scale = 7) {
+    
+    for (let i = 0; i < count; i++) {
+      const t = (Math.PI * 2) * (i / count);
+      // Heart parametric formula
+      const r = 1;
+      const hx = scale * 16 * Math.pow(Math.sin(t), 3);
+      const hy = -scale * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+    
+      const vx = hx * (Math.random() * 0.9 + 0.9);
+      const vy = hy * (Math.random() * 0.9 + 0.9);
+      
+      //const vx = hx;
+      //const vy = hy;
+      
+      const sprite = new PIXI.Sprite(particleTexture);
+      sprite.anchor.set(0.5);
+      sprite.x = x;
+      sprite.y = y;
+      sprite.alpha = 1;
+      sprite.scale.set(4);
+      sprite.blendMode = PIXI.BLEND_MODES.ADD;
+      
+      if (Math.random() * 2 < 1)
+        sprite.tint = 0xddff;
+      
+      app.stage.addChild(sprite);
+
+      // Animate
+      const lifetime = 500 + Math.random() * 50;
+      let age = 0;
+      
+      app.ticker.add(function update(delta) {
+        age += delta;
+        sprite.x += vx * delta * 0.07;
+        sprite.y += vy * delta * 0.07 + 0.1 * age; // gravity
+        sprite.alpha -= 0.01 * delta;
+        if (age > lifetime || sprite.alpha <= 0) {
+          app.stage.removeChild(sprite);
+          app.ticker.remove(update);
+        }
+      });
+      
+    }
+  }
+
+  //spawnHeartFirework(app.renderer.width / 2, app.renderer.height / 2);
+  setTimeout(() => {
+    spawnHeartFirework(app.renderer.width / 2, app.renderer.height / 2);
+  }, 500);
+</script>
+</body>
+</html>

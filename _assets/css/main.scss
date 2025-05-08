@@ -50,7 +50,7 @@ html, body {
 
 html {
   font-size: 100%;
-  background: black;
+  background: #000;
   color: red;
   // display: flex;
 }
@@ -252,8 +252,16 @@ hr.short {
 }
 
 
-
 // === HOME ===
+
+.fade-box {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.fade-box.show {
+  opacity: 1;
+}
+
 
 #home-content {
   font-size: 1.4rem;
@@ -296,6 +304,14 @@ hr.short {
   }
 }
 
+
+canvas#firework-canvas {
+  background: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
 
 
 // === PAGES ===
