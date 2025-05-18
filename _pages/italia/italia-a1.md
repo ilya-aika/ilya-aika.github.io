@@ -1,4 +1,5 @@
 ---
+title: イタリア語 A1 単語帳 by Aika ❤️
 permalink: /it/a1/
 classname: italia
 ---
