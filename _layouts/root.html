@@ -22,13 +22,17 @@
   {% if page.url == "/" -%}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
   {%- endif %}
+  
   {% if page.js -%}
   <script src="{{ '/assets/js/' | append: page.js }}"></script>
   {%- endif %}
+  
+  <script src="/assets/js/all.js"></script>
 </head>
 <body>
   {{ content }}
   
+  <br/>
   <div id="visitor-container" class="hidden">
     <a href="https://librecounter.org/referer/show">
       <img src="https://librecounter.org/counter.svg" referrerpolicy="unsafe-url" alt="visitor counter">

@@ -1,6 +1,7 @@
 
+(async function(){
 document.addEventListener("DOMContentLoaded", async function() {
-  const params = parseParams();
+  const params = parseParamsHome();
   let app = null;
   let showContentSleep = 50;
   
@@ -108,7 +109,7 @@ function spawnHeartFirework(app, particleTexture, x, y, count = 1500, scale = 3)
 }
 
 
-function parseParams() {
+function parseParamsHome() {
   const params = new URLSearchParams(window.location.search);
   const ret = {};
   
@@ -184,3 +185,4 @@ function getTimePassedString(baseDateStr) {
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+})();
