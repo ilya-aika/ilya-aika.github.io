@@ -8,7 +8,7 @@ permalink: /trip/2025/8
 
 <div id="globeViz" style="width: 100%; height: 100vh;"></div>
 <script>
-  const city = {
+  const country = {
     Japan:       { lat: 34.6937,  lng: 135.5023 },   // Osaka
     Korea:       { lat: 37.5665,  lng: 126.9780 },   // Seoul
     Switzerland: { lat: 46.9481,  lng:   7.4474 },   // Bern
@@ -21,7 +21,7 @@ permalink: /trip/2025/8
     Australia:   { lat: -33.8688, lng: 151.2093 },   // Sydney
   };
 
-  const points = Object.entries(city).map(([name, {lat, lng}]) => ({ lat, lng, name }));
+  const points = Object.entries(country).map(([name, {lat, lng}]) => ({ lat, lng, name }));
   const coords = points.map(p => [p.lat, p.lng, 0]);
   coords.push(coords[0]); // close the loop
 
@@ -53,5 +53,5 @@ permalink: /trip/2025/8
       .pathDashAnimateTime(4000)
     .backgroundColor('#000011');
   
-  world.pointOfView({ ... city.Osaka, alt: 1.5 });
+  world.pointOfView({ ... country.Japan, alt: 1.5 });
 </script>
