@@ -11,8 +11,8 @@ permalink: /trip/2025/8
   const country = {
     Japan:       { lat: 34.6937,  lng: 135.5023 },   // Osaka
     Korea:       { lat: 37.5665,  lng: 126.9780 },   // Seoul
-    Switzerland: { lat: 46.9481,  lng:   7.4474 },   // Bern
     UK:          { lat: 51.5074,  lng:  -0.1278 },   // London
+    Switzerland: { lat: 46.9481,  lng:   7.4474 },   // Bern
     France:      { lat: 48.8566,  lng:   2.3522 },   // Paris
     Italy:       { lat: 45.4408,  lng:  12.3155 },   // Venice (Venezia)
     Turkey:      { lat: 41.0082,  lng:  28.9784 },   // Istanbul
@@ -39,7 +39,7 @@ permalink: /trip/2025/8
     .labelsData(points)
       .labelLat(d => d.lat)
       .labelLng(d => d.lng)
-      .labelText(d => d.name != 'Rome' ? d.name : '')
+      .labelText(d => d.name)
       .labelSize(1.2)
       .labelDotRadius(0.2)
       .labelColor(() => 'white')
